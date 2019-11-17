@@ -8,34 +8,35 @@ import Select from './Components/Select.jsx'
 class App extends Component {
   state = {
     options : [],
-    selectValue: ''
+    selectValue: '',
+    description: [],
+    urls : []
   }
   
-  componentDidMount () {
-    fetch('/type')
-    .then(res => res.json())
-    .then(data => this.setState({options: data}));
-    
+  async componentDidMount () {
+    let response = await fetch('/type');
+    let json = await response.json();
+    this.setState({options: json});
+    let response2 = await fetch('/style');
+    let json2 = await response2.json();
+    this.setState({description: json2[0]});
+    this.setState({urls: json2[1]});  
   }
   onSelectChange = (event) => {
     event.preventDefault();
     this.setState({selectValue: event.target.value})
   }
   render() {
-    const { selectValue } = this.state;
+    const { selectValue, description, urls } = this.state;
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-md-4"></div>
-          <div className="col-md-4">
+        <div className="row justify-content-center">
+          <div className="col-md-6 ">
            <h1>Ink Place </h1>
            <Select options={ this.state.options } value= {this.state.selectValue} onChange={this.onSelectChange} />
           </div>
-          <div className="col-md-4"></div>
         </div>
-        <div className="row">
-          <Images/>
-        </div>
+        <Images/>
       </div>
     )  
   }
