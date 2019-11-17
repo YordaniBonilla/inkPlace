@@ -33,6 +33,14 @@ const style3 = {
   },
 };
 class Images extends React.Component {
+    constructor() {
+     super();
+     this.state = {
+      style: []
+    } 
+    }
+    
+
     render() {
        return(
         <div > 
