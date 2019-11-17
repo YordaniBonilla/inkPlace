@@ -7,7 +7,8 @@ import Select from './Components/Select.jsx'
 
 class App extends Component {
   state = {
-    options : []
+    options : [],
+    selectValue: ''
   }
   
   componentDidMount () {
@@ -16,14 +17,19 @@ class App extends Component {
     .then(data => this.setState({options: data}));
     
   }
+  onSelectChange = (event) => {
+    event.preventDefault();
+    this.setState({selectValue: event.target.value})
+  }
   render() {
+    const { selectValue } = this.state;
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-4"></div>
           <div className="col-md-4">
            <h1>Ink Place </h1>
-           <Select options={ this.state.options } />
+           <Select options={ this.state.options } value= {this.state.selectValue} onChange={this.onSelectChange} />
           </div>
           <div className="col-md-4"></div>
         </div>
