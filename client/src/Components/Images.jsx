@@ -11,17 +11,21 @@ class Images extends React.Component {
     
 
     render() {
+      const { description } = this.props;
       return (
-        <div class="d-flex">
+        <div class="d-flex flex-wrap justify-content-center">
             <div class="card" style={{width: '18rem'}}>
               <img 
-                class="card-img-top" 
+                class="card-img-top"
+                height={200} 
                 src={require('../blackwork/body.jpg')} 
                 alt="Card image cap"
               />
               <div class="card-body">
               <h4 >BlackWork</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text">
+              {description.map((item,index) => index === 3 ? item.info : '')}
+              </p>
               </div>
               </div>
 
@@ -30,10 +34,13 @@ class Images extends React.Component {
                   class="card-img-top" 
                   src={[require('../oldSchool/one.jpg')]} 
                   alt="Card image cap"
+                  height={200}
                 />
               <div class="card-body">
               <h4>OldSchool</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text">
+              {description.map((item,index) => index === 0 ? item.info : '')}
+              </p>
               </div>
               </div>
 
@@ -42,10 +49,13 @@ class Images extends React.Component {
                   class="card-img-top" 
                   src={[require('../tribal/one.jpg')]} 
                   alt="Card image cap"
+                  height={200}
                 />
               <div class="card-body">
               <h4>Tribal</h4>          
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text">
+              {description.map((item,index) => index === 2 ? item.info : '')}
+              </p>
               </div>
               </div>
 
@@ -54,10 +64,13 @@ class Images extends React.Component {
                   class="card-img-top" 
                   src={[require('../japanese/back.jpg')]} 
                   alt="Card image cap"
+                  height={200}
                 />
               <div class="card-body">
               <h4>Japanese</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text">
+              {description.map((item,index) => index === 1 ? item.info : '')}
+              </p>
               </div>
               </div>
         </div>

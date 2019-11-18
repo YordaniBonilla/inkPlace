@@ -19,8 +19,7 @@ app.get ('/type',function (req, res) {
 
 app.get  ('/style', function (req,res) {
   Promise.all([
-    db.getInfoByStyle(),
-    db.imagesByStyle()
+    db.getInfoByStyle()
   ])
     .then (data => {
       res.status(200).send(data)

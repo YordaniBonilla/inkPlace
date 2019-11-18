@@ -9,8 +9,7 @@ class App extends Component {
   state = {
     options : [],
     selectValue: '',
-    description: [],
-    urls : []
+    description: []
   }
   
   async componentDidMount () {
@@ -19,24 +18,24 @@ class App extends Component {
     this.setState({options: json});
     let response2 = await fetch('/style');
     let json2 = await response2.json();
-    this.setState({description: json2[0]});
-    this.setState({urls: json2[1]});  
+    this.setState({description: json2[0]});  
   }
   onSelectChange = (event) => {
     event.preventDefault();
     this.setState({selectValue: event.target.value})
   }
   render() {
-    const { selectValue, description, urls } = this.state;
+    const { selectValue, description} = this.state;
+
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row justify-content-center">
           <div className="col-md-6 ">
-           <h1>Ink Place </h1>
+           <h1 style={{textAlign: 'center'}}>Ink Place </h1>
            <Select options={ this.state.options } value= {this.state.selectValue} onChange={this.onSelectChange} />
           </div>
         </div>
-        <Images/>
+        <Images description={description}/>
       </div>
     )  
   }
